@@ -2,6 +2,35 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+class TestButton extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      clickCounter: 0,
+      buttonText :props.text
+    }
+  }
+  clickHandler = (e) => {
+    this.setState( (state) => (
+      {
+        clickCounter: ++state.clickCounter,
+        buttonText: `You clicked me ${this.state.clickCounter} ${(this.state.clickCounter > 1) ? 'times' : 'time'}`
+      }
+    )
+    )
+
+    
+  }
+
+  render() {
+    return (
+    //<button onClick = {(e) => {this.clickHandler(e, 'string')}}>
+    <button onClick={this.clickHandler}>
+      {this.state.buttonText}
+    </button>
+    )
+  }
+}
 function App() {
   return (
     <div className="App">
@@ -10,14 +39,7 @@ function App() {
         <p>
           My first react app is here
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          do not Learn React
-        </a>
+        <TestButton text='PUSH ME'/>
       </header>
     </div>
   );
