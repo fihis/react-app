@@ -1,82 +1,92 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
 
-class Input extends React.Component {
+
+
+class InputApp extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      text: this.props.value
-    }
+    this.state = { items: [], text: '' };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-  // changeHandler = () => {
-  //   this.setState((state) => ({
-  //     text: 
-  //   }
-  //   )
-  //   )
-  // }
+
   render() {
     return (
-      <textarea defaultValue={this.props.value}>
-        
-      </textarea>
-    )
+      <div>
+        <form onSubmit={this.handleSubmit}>
+
+          <input
+            class="input"
+            onChange={this.handleChange}
+            value={this.state.text}
+          />
+          <input
+            class="input"
+            onChange={this.handleChange}
+            value={this.state.text}
+          />
+          <input
+            class="input"
+            onChange={this.handleChange}
+            value={this.state.text}
+          />
+          <button>
+            Submit
+                  </button>
+          <Output items={this.state.items} />
+        </form>
+      </div>
+    );
   }
-};
+
+  handleChange(e) {
+    this.setState({ text: e.target.value });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    if (!this.state.text.length) {
+      return;
+    }
+    const newItem = {
+      text: this.state.text,
+      id: Date.now()
+    };
+    this.setState(state => ({
+      items: state.items.concat(newItem),
+      text: ''
+    }));
+  }
+}
 
 class Output extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    }
-  }
   render() {
     return (
-      <output>
-        {this.props.value}
-      </output>
-    )
+
+
+      <table>
+        <tbody>
+            
+              {this.props.items.map(item => (
+                <tr> <td>{item.text}</td></tr>
+              ))}
+            
+        </tbody>
+      </table>
+
+
+
+     
+      );
   }
 }
 
-class TestButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      clickCounter: 0,
-      buttonText: props.text
-    }
-  }
-  clickHandler = (e) => {
-    this.setState((state) => (
-      {
-        clickCounter: ++state.clickCounter,
-        buttonText: `You clicked me ${this.state.clickCounter} ${(this.state.clickCounter > 1) ? 'times' : 'time'}`
-      }
-    )
-    )
-  }
-  render() {
-    return (
-      //<button onClick = {(e) => {this.clickHandler(e, 'string')}}>
-      <button onClick={this.clickHandler}>
-        {this.state.buttonText}
-      </button>
-    )
-  }
-}
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <TestButton text='PUSH ME' />
-        <Input value='Enter text here...' />
-        <Output value={Input.value} />
-      </header>
+      <InputApp />
     </div>
   );
 }
