@@ -3,6 +3,14 @@ import React from 'react';
 import Output from './Output'
 import Userform from './Userform'
 import ErrorMsg from './ErrorMsg'
+import List from './List'
+import Home from './Home'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 class App extends React.Component {
   constructor(props) {
@@ -39,15 +47,44 @@ class App extends React.Component {
   render() {
     const user = this.state.user;
     const items = this.state.items;
+
     return (
-      <div className="App">
-        <Userform user={user} items={items} onUserChange={this.handleChange} onUserSubmit={this.handleSubmit} />
-        {(this.state.errorFlag) && (<ErrorMsg text='Fill all fields first' />)}
-        {(this.state.items.length > 0) &&
-          (<Output items={this.state.items} />)}
-      </div>
+      <Router>
+        <div>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/home">Home</Link>
+              </li>
+              <li>
+                <Link to="/list">List</Link>
+              </li>
+            </ul>
+          </nav>
+
+          {/* A <Switch> looks through its children <Route>s and
+              renders the first one that matches the current URL. */}
+          <Switch>
+            <Route path="/list">
+              <List />
+            </Route>
+            <Route path="/home">
+              <Home />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
     );
   }
+  // return (
+  //   <div className="App">
+  //     <Userform user={user} items={items} onUserChange={this.handleChange} onUserSubmit={this.handleSubmit} />
+  //     {(this.state.errorFlag) && (<ErrorMsg text='Fill all fields first' />)}
+  //     {(this.state.items.length > 0) &&
+  //       (<Output items={this.state.items} />)}
+  //   </div>
+  // );
 }
+
 
 export default App;
