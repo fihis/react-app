@@ -5,11 +5,11 @@ class Output extends React.Component {
     return (
       <table>
         <tbody>
-          {this.props.items.map(item => (
-            <tr>
-              <td>{item.user.name}</td>
-              <td>{item.user.surname}</td>
-              <td>{item.user.gender}</td>
+          {this.props.items.map((item, index) => (
+            <tr key={index + 1}>
+              <td>{item.name}</td>
+              <td>{item.surname}</td>
+              <td>{item.gender}</td>
             </tr>
           ))}
         </tbody>
