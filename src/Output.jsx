@@ -8,8 +8,8 @@ class Output extends React.Component {
   }
   
   handleShowDetails = (e) => {
-    this.props.onShowDetails(e.target.parentElement.getAttribute('listId'));
-    this.props.history.push('/user-details');
+    //this.props.onShowDetails(e.target.parentElement.getAttribute('listId'));
+    this.props.history.push(`/user-details/${e.target.parentElement.getAttribute('listId')}`);
   }
 
   render() {
@@ -17,7 +17,7 @@ class Output extends React.Component {
       <table>
         <tbody>
           {this.props.items.map((item, index) => (
-              <tr listId={index} key={index}>
+              <tr listId={item.id} key={index}>
                 <td onClick={this.handleShowDetails}>{item.name}</td>
                 <td onClick={this.handleShowDetails}>{item.surname}</td>
                 <td onClick={this.handleShowDetails}>{item.gender}</td>

@@ -4,10 +4,10 @@ import { withRouter } from 'react-router-dom';
 class List extends React.Component {
 
     handleShowDetails = (e) => {
-        this.props.onShowDetails(e.target.parentElement.getAttribute('listId'));
-        this.props.history.push('/user-details');
+        //this.props.onShowDetails(e.target.parentElement.getAttribute('listId'));
+        this.props.history.push(`/user-details/${e.target.parentElement.getAttribute('listId')}`);
     }
-
+//сделать проверку isRemoveShow если да то рендерим кнопки
     render() {
         return (
             <div className="wrapper">
@@ -16,7 +16,11 @@ class List extends React.Component {
                     (<table>
                         <tbody>
                             {this.props.items.map((item, index) => (
-                                <tr onClick={this.handleShowDetails} listId={index} key={index}>
+                                <tr onClick={
+                                    //передаем индекс в функцию callback
+                                    //(index) => {}
+                                this.handleShowDetails
+                                } listId={item.id} key={index}>
                                     <td>{item.name}</td>
                                     <td>{item.surname}</td>
                                     <td>{item.gender}</td>

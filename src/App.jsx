@@ -9,24 +9,15 @@ import {
   Route,
   Link,
 } from "react-router-dom";
+import Users from './Mocks'
+
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.detailsId = undefined;
     this.state = {
-      items: [
-        {
-          name: 'Petya',
-          surname: 'Petrov',
-          gender: 'Male'
-        },
-        {
-          name: 'Masha',
-          surname: 'Marianova',
-          gender: 'Female'
-        }
-      ],
+      items: Users,
       user: {
         name: '',
         surname: '',
@@ -87,8 +78,8 @@ class App extends React.Component {
               <Home user={this.state.user} items={this.state.items} errorFlag={this.state.errorFlag} onUserChange={this.handleChange}
                 onUserSubmit={this.handleSubmit} onUserRemove={this.handleRemove} onShowDetails={this.handleShowDetails} />
             </Route>
-            <Route path="/user-details">
-              <UserDetails user={this.state.items[this.detailsId]} />
+            <Route path="/user-details/:id" component={UserDetails}>
+              {/* <UserDetails user={this.state.items[this.detailsId]} /> */}
             </Route>
           </Switch>
         </div>
