@@ -1,9 +1,16 @@
 .input {
   display: block;
 }
-table, th, td {
+th, td {
   border: 1px solid black;
+}
+tr {
+  cursor: pointer; 
 }
 table {
   border-collapse: collapse;
+}
+.remove-icon {
+  display: inline;
+  cursor: pointer; 
 }

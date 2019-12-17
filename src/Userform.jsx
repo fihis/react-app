@@ -1,17 +1,7 @@
 import React from 'react';
 
 class Userform extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            items: [],
-            user: {
-                name: '',
-                surname: '',
-                gender: ''
-            }
-        };
-    }
+
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.onUserSubmit();
@@ -49,4 +39,5 @@ class Userform extends React.Component {
         );
     }
 };
+
 export default Userform
