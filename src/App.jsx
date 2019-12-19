@@ -17,7 +17,7 @@ class App extends React.Component {
     super(props);
     this.detailsId = undefined;
     this.state = {
-      items: Users,
+      // items: Users,
       user: {
         name: '',
         surname: '',
@@ -43,17 +43,20 @@ class App extends React.Component {
   }
 
   handleSubmit = () => {
-    for (let key in this.state.user) {
-      if (this.state.user[key] === '') {
-        this.setState({ errorFlag: true });
-        return
-      }
-    }
-    const newItem = this.state.user;
-    this.setState(state => ({
-      items: state.items.concat(newItem),
-      user: { name: '', surname: '', gender: '' }
-    }));
+    this.props.addUser(this.state.user);
+
+
+    // for (let key in this.state.user) {
+    //   if (this.state.user[key] === '') {
+    //     this.setState({ errorFlag: true });
+    //     return
+    //   }
+    // }
+    // const newItem = this.state.user;
+    // this.setState(state => ({
+    //   items: state.items.concat(newItem),
+    //   user: { name: '', surname: '', gender: '' }
+    // }));
   }
 
   render() {
@@ -72,10 +75,10 @@ class App extends React.Component {
           </nav>
           <Switch>
             <Route path="/list">
-              <List items={this.state.items} onShowDetails={this.handleShowDetails} />
+              <List items={this.props.users} onShowDetails={this.handleShowDetails} />
             </Route>
             <Route path="/home">
-              <Home user={this.state.user} items={this.state.items} errorFlag={this.state.errorFlag} onUserChange={this.handleChange}
+              <Home user={{}} items={this.props.users} errorFlag={false} onUserChange={this.handleChange}
                 onUserSubmit={this.handleSubmit} onUserRemove={this.handleRemove} onShowDetails={this.handleShowDetails} />
             </Route>
             <Route path="/user-details/:id" component={UserDetails}>
