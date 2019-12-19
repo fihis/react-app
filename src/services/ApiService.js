@@ -1,4 +1,4 @@
-import users from './Mocks'
+import users from '../infrastructure/Mocks'
 
 class ApiService {
     getUserById(id) {

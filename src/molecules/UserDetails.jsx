@@ -1,5 +1,5 @@
 import React from 'react';
-import apiService from './ApiService'
+import apiService from '../services/ApiService'
 
 class UserDetails extends React.Component {
     constructor(props) {

@@ -1,7 +1,7 @@
 import React from 'react';
-import ErrorMsg from './ErrorMsg'
-import Userform from './Userform'
-import Output from './Output'
+import ErrorMsg from '../atoms/ErrorMsg'
+import Userform from '../molecules/Userform'
+import Output from '../molecules/Output'
 
 class Home extends React.Component {
     render() {

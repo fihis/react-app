@@ -1,15 +1,15 @@
 import './App.css';
 import React from 'react';
-import List from './List'
-import Home from './Home'
-import UserDetails from './UserDetails'
+import List from './pages/List'
+import Home from './pages/Home'
+import UserDetails from './molecules/UserDetails'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link,
 } from "react-router-dom";
-import Users from './Mocks'
+import Users from './infrastructure/Mocks'
 
 
 class App extends React.Component {

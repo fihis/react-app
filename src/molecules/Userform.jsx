@@ -1,4 +1,5 @@
 import React from 'react';
+import SubmitButton from '../atoms/SubmitButton';
 
 class Userform extends React.Component {
 
@@ -32,9 +33,7 @@ class Userform extends React.Component {
                     onChange={this.handleChange}
                     value={this.props.user.gender}
                 />
-                <button>
-                    Submit
-                </button>
+                <SubmitButton />
             </form>
         );
     }

@@ -21,7 +21,7 @@ class Output extends React.Component {
                 <td onClick={this.handleShowDetails}>{item.name}</td>
                 <td onClick={this.handleShowDetails}>{item.surname}</td>
                 <td onClick={this.handleShowDetails}>{item.gender}</td>
-                <td><img onClick={this.handleRemove} className='remove-icon' width='20px' src={require("./remove.svg")} alt="remove" /></td>
+                <td><img onClick={this.handleRemove} className='remove-icon' width='20px' src={require("../assets/remove.svg")} alt="remove" /></td>
               </tr>
           ))}
         </tbody>
