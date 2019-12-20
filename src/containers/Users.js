@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { addUserA, deleteUserA } from './usersActions'
-import App from '../pages/App'
+import App from '../App'
 
 const mapStateToProps = state => ({
   users: state.users

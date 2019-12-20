@@ -34,8 +34,10 @@ class App extends React.Component {
   }
 
   handleRemove = (removeId) => {
-    let newItems = this.state.items.splice(removeId, 1);
-    this.setState({ newItems });
+    //console.log(removeId)
+    this.props.deleteUser(removeId);
+    //let newItems = this.state.items.splice(removeId, 1);
+    //this.setState({ newItems });
   }
 
   handleChange = (target, value) => {
@@ -43,7 +45,10 @@ class App extends React.Component {
   }
 
   handleSubmit = () => {
+    console.log(this.props.users)
     this.props.addUser(this.state.user);
+    //console.log(this.state.user)
+    //console.log(this.props.users)
 
 
     // for (let key in this.state.user) {
@@ -74,11 +79,11 @@ class App extends React.Component {
             </ul>
           </nav>
           <Switch>
-            <Route path="/list">
-              <List items={this.props.users} onShowDetails={this.handleShowDetails} />
+            <Route path="/list"> {/*почему юзерс.юзерс??*/}
+              <List items={this.props.users.users} onShowDetails={this.handleShowDetails} />
             </Route>
             <Route path="/home">
-              <Home user={{}} items={this.props.users} errorFlag={false} onUserChange={this.handleChange}
+              <Home user={{}} items={this.props.users.users} errorFlag={false} onUserChange={this.handleChange}
                 onUserSubmit={this.handleSubmit} onUserRemove={this.handleRemove} onShowDetails={this.handleShowDetails} />
             </Route>
             <Route path="/user-details/:id" component={UserDetails}>

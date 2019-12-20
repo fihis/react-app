@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 class Output extends React.Component {
 
   handleRemove = (e) => {
+    //console.log(e.target.parentElement.parentElement.getAttribute('listId'))
     this.props.onUserRemove(e.target.parentElement.parentElement.getAttribute('listId'));
   }
   
@@ -17,7 +18,7 @@ class Output extends React.Component {
       <table>
         <tbody>
           {this.props.items.map((item, index) => (
-              <tr listId={item.id} key={index}>
+              <tr listId={index} key={index}>
                 <td onClick={this.handleShowDetails}>{item.name}</td>
                 <td onClick={this.handleShowDetails}>{item.surname}</td>
                 <td onClick={this.handleShowDetails}>{item.gender}</td>
