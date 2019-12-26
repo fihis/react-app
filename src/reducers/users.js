@@ -1,29 +1,43 @@
-const users = (state = {users: []}, action) => {
+const users = (state = { users: [] }, action) => {
   switch (action.type) {
     case 'ADD_USER':
-      //console.log(state.users)
       return {
         ...state,
         users: [...state.users, action.user],
       }
     case 'DELETE_USER':
-      //добавлять к объекту юзера айди
-      console.log(state.users)
       return {
-        ...state, 
-        users: state.users.filter((user, i) =>
-        
-        {
-          console.log(typeof(action.id));
-          console.log(typeof(i));
-          console.log(action.id,i);
-          //как избежать ту стринг??
-          return (action.id !== i.toString())}
-        //(id !== state.users[i].id)
-      )}
+        ...state,
+        users: state.users.filter(user => (action.id !== user.id))
+      }
+    case 'SET_ACTIVE_USER':
+      return {
+        ...state,
+        activeUser: action.user
+      };
     default:
       return state
   }
 }
+
+// export const fillPersonalInfoReducer = handleActions<FillPersonalInfoStateProps, any>(
+//   {
+//     [ACTIONS.TOGGLE_FILL_PERSONAL_INFORMATION_MODAL]: (state: FillPersonalInfoStateProps) => ({
+//       ...state,
+//       isShowFillPersonalInformation: !state.isShowFillPersonalInformation
+//     }),
+//     [ACTIONS.SET_PERSONAL_INFORMATION]: (state: FillPersonalInfoStateProps,
+//       { payload }: Action<PersonalInformation>) => ({
+//         ...state,
+//         personalInformation: payload
+//       }),
+//     [ACTIONS.SET_ACTIVE_SUBMIT]: (state: FillPersonalInfoStateProps, { payload }: Action<boolean>) => ({
+//       ...state,
+//       isDisableSubmit: payload
+//     })
+//   },
+//   fillPersonalInfoState
+// );
+
 
 export default users

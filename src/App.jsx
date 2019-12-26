@@ -9,7 +9,7 @@ import {
   Route,
   Link,
 } from "react-router-dom";
-import Users from './infrastructure/Mocks'
+// import Users from './infrastructure/Mocks'
 
 
 class App extends React.Component {
@@ -45,23 +45,7 @@ class App extends React.Component {
   }
 
   handleSubmit = () => {
-    console.log(this.props.users)
-    this.props.addUser(this.state.user);
-    //console.log(this.state.user)
-    //console.log(this.props.users)
-
-
-    // for (let key in this.state.user) {
-    //   if (this.state.user[key] === '') {
-    //     this.setState({ errorFlag: true });
-    //     return
-    //   }
-    // }
-    // const newItem = this.state.user;
-    // this.setState(state => ({
-    //   items: state.items.concat(newItem),
-    //   user: { name: '', surname: '', gender: '' }
-    // }));
+    this.props.addUser({...this.state.user, id: (new Date()).getSeconds()});
   }
 
   render() {
@@ -80,11 +64,17 @@ class App extends React.Component {
           </nav>
           <Switch>
             <Route path="/list"> {/*почему юзерс.юзерс??*/}
-              <List items={this.props.users.users} onShowDetails={this.handleShowDetails} />
+              <List items={this.props.users.users} 
+                    onShowDetails={this.handleShowDetails} />
             </Route>
             <Route path="/home">
-              <Home user={{}} items={this.props.users.users} errorFlag={false} onUserChange={this.handleChange}
-                onUserSubmit={this.handleSubmit} onUserRemove={this.handleRemove} onShowDetails={this.handleShowDetails} />
+              <Home user={{}} 
+                    items={this.props.users.users} 
+                    errorFlag={false} 
+                    onUserChange={this.handleChange}
+                    onUserSubmit={this.handleSubmit} 
+                    onUserRemove={this.handleRemove} 
+                    onShowDetails={this.handleShowDetails} />
             </Route>
             <Route path="/user-details/:id" component={UserDetails}>
               {/* <UserDetails user={this.state.items[this.detailsId]} /> */}
